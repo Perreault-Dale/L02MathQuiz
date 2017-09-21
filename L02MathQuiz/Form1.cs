@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,6 +31,9 @@ namespace L02MathQuiz
 
         // Display today's date
         DateTime today = DateTime.Today;
+
+        // Sound to play when the user enters a correct answer
+        SoundPlayer mySound = new SoundPlayer(@"c:\Windows\Media\notify.wav");
 
         // Method to start quiz
         public void StartQuiz()
@@ -66,6 +70,14 @@ namespace L02MathQuiz
             difference.Value = 0;
             product.Value = 0;
             quotient.Value = 0;
+
+            // Set background color for timer and answer fields
+            timeLabel.BackColor = Color.White;
+            sum.BackColor = Color.White;
+            difference.BackColor = Color.White;
+            product.BackColor = Color.White;
+            quotient.BackColor = Color.White;
+
 
             // Set initial clock value
             timeLeft = 30;
@@ -151,7 +163,10 @@ namespace L02MathQuiz
             NumericUpDown answerBox = sender as NumericUpDown;
 
             if(addend1 + addend2 == answerBox.Value)
+            {
                 answerBox.BackColor = Color.Green;
+                mySound.Play();
+            }
         }
 
         private void test_Difference(object sender, EventArgs e)
@@ -160,7 +175,10 @@ namespace L02MathQuiz
             NumericUpDown answerBox = sender as NumericUpDown;
 
             if (minuend - subtrahend == answerBox.Value)
+            {
                 answerBox.BackColor = Color.Green;
+                mySound.Play();
+            }
         }
 
         private void test_Product(object sender, EventArgs e)
@@ -169,7 +187,10 @@ namespace L02MathQuiz
             NumericUpDown answerBox = sender as NumericUpDown;
 
             if (multiplicand * multiplier == answerBox.Value)
+            {
                 answerBox.BackColor = Color.Green;
+                mySound.Play();
+            }
         }
 
         private void test_Quotient(object sender, EventArgs e)
@@ -178,7 +199,10 @@ namespace L02MathQuiz
             NumericUpDown answerBox = sender as NumericUpDown;
 
             if (dividend / divisor == answerBox.Value)
+            {
                 answerBox.BackColor = Color.Green;
+                mySound.Play();
+            }
         }
     }
 }
